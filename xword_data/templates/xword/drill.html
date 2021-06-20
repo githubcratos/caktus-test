@@ -1,4 +1,28 @@
-{% extends 'base.html' %} {% block title %} Answer View {% endblock %} {% block content %}
+{% extends 'base.html' %} {% block title %} Xword Drill {% endblock %} {% block content %}
 
+ <div class="row" style="text-align: center;">
+        <div class="col-12">
+            <h1>{{ rand_clue.clue_text }}</h1>
+           This is just for testing:  <strong style="color:#9DC06D">{{ rand_clue.entry.entry_text }}</strong>
+        </div>
+       
+        <div class="col-12" style="text-align: -webkit-center">
+            <form method="post" style="width: 360px;">
+                {% csrf_token %}
+                <input type="hidden" name="clue_id" value="{{ rand_clue.pk }}">
+                <div class="form-group">
+                    <input type="text" class="form-control {% if is_error %}is-invalid{% endif %}" name="answer" placeholder="Length : {{ rand_clue.entry.entry_text | length }}" required>
+                    {% if is_error %}
+                        <div class="invalid-feedback">Your answer is not correct.</div>
+                    {% endif %}
 
+                {% comment %} I wanted users to be able to pay if they want to skip and to pay for answer {% endcomment %}
+                 <a href="{% url 'xword-answer' rand_clue.pk %}" >Pay to view Answer</a>
+                </div>
+                <div class="form-group">
+                    <button type="submit" style="background-color:#9DC06D; border-color:#6C7B78" class="btn btn-sm btn-primary">SUBMIT</button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
