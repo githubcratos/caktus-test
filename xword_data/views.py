@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 
 # Create your views here.
 def drill(request):
-    return HttpResponse("drill")
+    context={}
+    return render(request, 'xword/answer.html', context)
 
 
 def answer(request, pk):
-    
-    return HttpResponse("answer")
+    context={}
+    return render(request, 'xword/answer.html', context)
