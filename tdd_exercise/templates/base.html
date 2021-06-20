@@ -25,6 +25,13 @@
                         </div>
                     </div>
                 {% endblock %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <center><div class=" col-md-6 alert alert-success" role="alert">
+                          {{ message }}
+                        </div></center>
+                    {% endfor %}
+                {% endif %}
                 {% block content %}{% endblock %}
             </main>
         </div>

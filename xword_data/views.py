@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseNotFound
 from .models import Puzzle, Entry, Clue
 from django.contrib import messages
 # from django.urls import reverse
@@ -34,5 +34,15 @@ def drill(request):
 
 
 def answer(request, pk):
-    context={}
+     # check if in DB
+    check = Clue.objects.filter(pk=pk).exists()
+    if not check:
+        return HttpResponseNotFound("Data Not Found")
+
+    clue = Clue.objects.get(pk=pk)
+    context={
+            'clue': clue,
+            'clue_id': clue.id,
+            'text': 'only appearance of this clue'
+        }
     return render(request, 'xword/answer.html', context)

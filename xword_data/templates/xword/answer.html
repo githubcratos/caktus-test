@@ -1,4 +1,37 @@
 {% extends 'base.html' %} {% block title %} Answer View {% endblock %} {% block content %}
+<div class="row" style="text-align: center;">
+    <div class="col-12">
+        <h1 style="color:#9DC06D">{{clue.entry.entry_text}}</h1>
+        <h2>{{clue.entry.entry_text}} is the correct answer! You have now answered 1 (of 3) clues correctly</h2>
+        <p>{{ clue.clue_text }}</p>
+        <p>Puzzle Title : {{ clue.puzzle.title }}</p>
+        <p>ByLine : {{ clue.puzzle.byline }}</p>
+        <p>Publisher : {{ clue.puzzle.publisher }}</p>
+        <p>Date : {{ clue.puzzle.date }}</p>
+        <p>{{text}}</p>
 
+        <table>
+            <tr>
+                <th>Count</th>
+                <th>Entry</th>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>ATREST</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>YET</td>
+
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SILENT</td>
+
+            </tr>
+
+        </table>
+    </div>
+</div>
 
 {% endblock %}
